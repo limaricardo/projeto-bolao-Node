@@ -4,6 +4,7 @@ import cors from "cors";
 import db from "./app/models/index.js";
 import { listMatches, importMatches } from "./app/controller/match.js";
 import { listTeams } from "./app/controller/teams.js";
+import { listUsers, addUser } from "./app/controller/users.js";
 
 const app = express();
 
@@ -33,7 +34,15 @@ app.get("/importMatches", (request, response) => {
 
 app.get("/teams", (request, response) => {
     listTeams(request, response);
-})
+});
+
+app.get("/user", (request, response) => {
+    listUsers(request, response);
+});
+
+app.post("/user", (request, response) => {
+    addUser(request, response);
+});
 
 const PORT = process.env.PORT || 8080;
 

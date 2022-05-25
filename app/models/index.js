@@ -1,21 +1,21 @@
 import dbConfig from "../config/db.config.js";
-import Sequelize from "sequelize"
+import Sequelize from "sequelize";
 import model from "./model.js";
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-    host: dbConfig.HOST,
-    dialect: dbConfig.dialect,
-    operatorsAliases: false,
-    pool: {
-        max: dbConfig.pool.max,
-        min: dbConfig.pool.min,
-        acquire: dbConfig.pool.acquire,
-        idle: dbConfig.pool.ide
-    },
-    logging: false
+  host: dbConfig.HOST,
+  dialect: dbConfig.dialect,
+  operatorsAliases: false,
+  pool: {
+    max: dbConfig.pool.max,
+    min: dbConfig.pool.min,
+    acquire: dbConfig.pool.acquire,
+    idle: dbConfig.pool.ide,
+  },
+  logging: false,
 });
 
-const db ={};
+const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
@@ -23,5 +23,8 @@ const loadedModels = model(sequelize, Sequelize);
 db.matches = loadedModels.Match;
 db.seasons = loadedModels.Season;
 db.teams = loadedModels.Team;
+db.users = loadedModels.User;
+db.bets = loadedModels.Bet;
+db.groups = loadedModels.ChampsGroups;
 
 export default db;
